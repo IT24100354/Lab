@@ -27,11 +27,10 @@ const itemSchema = new mongoose.Schema(
       default: "",
       trim: true,
     },
-    sequence: {
-      type: String,
-      required: [true, "ISequence is required"],
-      trim: true,
-    }
+    serialNumber: {
+  type: String,
+  required: true
+}
   },
   { timestamps: true }
 );

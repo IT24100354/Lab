@@ -8,20 +8,24 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
       price: "",
       description: "",
       imageUrl: "",
-      sequence:""
+      serialNumber: "",
     }
   );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     onSubmit({
       ...formData,
-      price: Number(formData.price),
+      price: Number(formData.price), // convert price to number
     });
   };
 
@@ -30,10 +34,20 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
       <h2>{submitText}</h2>
 
       <label>Item Name</label>
-      <input name="name" value={formData.name} onChange={handleChange} required />
+      <input
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        required
+      />
 
       <label>Category</label>
-      <input name="category" value={formData.category} onChange={handleChange} required />
+      <input
+        name="category"
+        value={formData.category}
+        onChange={handleChange}
+        required
+      />
 
       <label>Price</label>
       <input
@@ -54,9 +68,24 @@ function ItemForm({ initialValues, onSubmit, submitText }) {
       />
 
       <label>Image URL</label>
-      <input name="imageUrl" value={formData.imageUrl} onChange={handleChange} />
+      <input
+        name="imageUrl"
+        value={formData.imageUrl}
+        onChange={handleChange}
+      />
 
-      <button className="btn primary" type="submit">{submitText}</button>
+      {/* 🔥 Important field (your missing one before) */}
+      <label>Serial Number</label>
+      <input
+        name="serialNumber"
+        value={formData.serialNumber}
+        onChange={handleChange}
+        required
+      />
+
+      <button className="btn primary" type="submit">
+        {submitText}
+      </button>
     </form>
   );
 }
